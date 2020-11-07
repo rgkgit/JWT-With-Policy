@@ -1,12 +1,12 @@
-﻿using AutoSync.API.Options;
+﻿using AutoSync.API.Models;
+using AutoSync.API.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace AutoSync.API.MiddleWare
@@ -33,16 +33,18 @@ namespace AutoSync.API.MiddleWare
             {
                 response.Message = "Authorization-Token missing";
                 httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = 401;
                 await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
                 return;
             }
 
             httpContext.Request.Headers.TryGetValue("user-key", out StringValues val);
-            bool isValid = _tokenHelper.ValidateToken(_jwtOptions, val, out long userId);
+            bool isValid = _tokenHelper.ValidateToken(_jwtOptions, val, out long userId, out long roleId);
             if (!isValid)
             {
                 response.Message = "Invalid Token";
                 httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = 401;
                 await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
                 return;
             }
@@ -53,7 +55,7 @@ namespace AutoSync.API.MiddleWare
         {
             List<string> exList = new List<string>
             {
-                "/api/auth/login"
+                "/api/user/login"
             };
             return exList.Contains(url);
         }

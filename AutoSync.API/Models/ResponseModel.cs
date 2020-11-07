@@ -1,4 +1,4 @@
-﻿namespace AutoSync.API
+﻿namespace AutoSync.API.Models
 {
     public class ResponseModel
     {

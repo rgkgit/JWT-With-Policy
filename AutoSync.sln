@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSync.API", "AutoSync.API\AutoSync.API.csproj", "{8158784E-38A5-465B-B71D-4BE47C1C60FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSync.API", "AutoSync.API\AutoSync.API.csproj", "{8158784E-38A5-465B-B71D-4BE47C1C60FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSync.Core", "AutoSync.Core\AutoSync.Core.csproj", "{79F75C68-DF88-4ECE-9B07-BD8F56EBC51F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSync.Core", "AutoSync.Core\AutoSync.Core.csproj", "{79F75C68-DF88-4ECE-9B07-BD8F56EBC51F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutySync.Tests", "AutySync.Tests\AutySync.Tests.csproj", "{95EB3F82-6CB2-459A-AB39-B8914CE32CDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutySync.Tests", "AutySync.Tests\AutySync.Tests.csproj", "{95EB3F82-6CB2-459A-AB39-B8914CE32CDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSync.EFC", "AutoSync.EFC\AutoSync.EFC.csproj", "{EC6E9049-A600-46C4-B7E2-CF8EA7A75A76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{95EB3F82-6CB2-459A-AB39-B8914CE32CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95EB3F82-6CB2-459A-AB39-B8914CE32CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95EB3F82-6CB2-459A-AB39-B8914CE32CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC6E9049-A600-46C4-B7E2-CF8EA7A75A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC6E9049-A600-46C4-B7E2-CF8EA7A75A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6E9049-A600-46C4-B7E2-CF8EA7A75A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC6E9049-A600-46C4-B7E2-CF8EA7A75A76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

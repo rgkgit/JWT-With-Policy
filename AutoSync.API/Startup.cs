@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoSync.API.MiddleWare;
 using AutoSync.API.Options;
+using AutoSync.EFC;
+using AutoSync.EFC.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 
@@ -47,7 +43,10 @@ namespace AutoSync.API
                     res.NamingStrategy = null;  // <<!-- this removes the camelcasing
                 }
             });
-            #region JWT Configurations
+
+            //services.AddDbContext<AutoSyncDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AutoSyncDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            #region Swagger Configurations
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "AutoSync API", Version = "v1" });
@@ -78,6 +77,8 @@ namespace AutoSync.API
             #endregion
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<TokenHelper>();
         }
 

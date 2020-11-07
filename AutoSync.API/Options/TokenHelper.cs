@@ -21,11 +21,12 @@ namespace AutoSync.API.Options
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public bool ValidateToken(JwtIssuerOptions _jwtOptions, string token, out long userId)
+        public bool ValidateToken(JwtIssuerOptions _jwtOptions, string token, out long userId, out long roleId)
         {
             ClaimsPrincipal cPrinc;
             List<Claim> claims;
             userId = 0;
+            roleId = 0;
             try
             {
                 var valparam = new TokenValidationParameters
@@ -43,6 +44,11 @@ namespace AutoSync.API.Options
                 cPrinc = new JwtSecurityTokenHandler().ValidateToken(token, valparam, out SecurityToken validatedToken);
                 claims = cPrinc.Claims.ToList();
                 if (!long.TryParse(claims[0].Value, out userId))
+                {
+                    return false;
+                }
+
+                if (!long.TryParse(claims[1].Value, out roleId))
                 {
                     return false;
                 }
